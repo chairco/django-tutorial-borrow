@@ -1,0 +1,12 @@
+diff-match-patch==20121119
+dj-database-url==0.4.1
+dj-static==0.0.6
+Django==1.9.7
+django-crispy-forms==1.6.0
+django-import-export==0.4.5
+gunicorn==19.6.0
+pyasn1==0.1.9
+static3==0.7.0
+tablib==0.11.2
+psycopg2==2.5.4
+django-toolbelt

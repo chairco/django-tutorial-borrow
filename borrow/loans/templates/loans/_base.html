@@ -1,0 +1,19 @@
+{# loans/_base.html #}
+{% extends 'base.html' %}
+
+{% block body %}
+{{ block.super }}
+<div class="container">
+    {% block content %}
+    
+        {% block bar %}
+            <li><a href="{% url 'home' %}">Home</a>
+                <span class="divider">/</span>
+            </li>
+            <li><a href="{% url 'loan_list' %}">Loans</a>
+                <span class="divider">/</span>
+            </li>
+        {% endblock bar %}
+    {% endblock content %}
+</div>
+{% endblock body %}

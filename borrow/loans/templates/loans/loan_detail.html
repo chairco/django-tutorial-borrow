@@ -1,0 +1,36 @@
+{# loans/loan_detail.html #}
+{% extends 'loans/_base.html' %}
+
+{% block title %}Loans Detail | {{ block.super }}{% endblock title %}
+
+{% block content %}
+
+    <ul class="breadcrumb">
+        {% block bar %}{{ block.super }}
+            <li class="active">{{ object.purpose }}</li>
+        {% endblock bar %}
+    </ul>
+
+    <div class="page-header">
+        <a class="btn btn-primary pull-right" href="{% url 'loan_edit' pk=object.pk %}"><i class="icon-edit icon-white"></i>Edit</a>
+        <h1>{{ object.purpose }}</h1>
+    </div>
+
+    <table class="table table-striped">
+        <tr>
+            <th>isn</th>
+            <th>config</th>
+            <th>unit no.</th>
+        </tr>
+        {% for item in object.menu_items.all %}
+        <tr>
+            <td>{{ item.isn }}</td>
+            <td>{{ item.config }}</td>
+            <td>{{ item.unit_no }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p>By {{ object.owner }}</p>
+
+{% endblock content %}

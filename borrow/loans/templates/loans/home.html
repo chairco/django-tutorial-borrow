@@ -1,0 +1,11 @@
+{# loans/home.html #}
+{% extends 'loans/_base.html' %}
+
+{% block content %}
+
+<div class="jumbotron">
+  <h2>Loan Request System</h2>
+  <p><a class="btn btn-primary btn-lg" href="{% url 'loan_list' %}" role="button">Start >></a></p>
+</div>
+
+{% endblock content %}

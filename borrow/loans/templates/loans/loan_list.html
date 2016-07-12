@@ -1,0 +1,40 @@
+{# loans/loan_list.html #}
+{% extends 'loans/_base.html' %}
+
+{% block title %}Loans | {{ block.super }}{% endblock title %}
+
+{% block content %}
+    
+    <ul class="breadcrumb">
+        {% block bar %}{{ block.super }}
+        <li class="active">Loan list</li>
+        {% endblock bar %}
+    </ul>
+
+    <div class="page-header">
+        <a class="btn btn-primary pull-right" href="{% url 'loan_add' %}">Add Loan Request</a>
+        <h1>Loan List</h1>
+    </div>
+
+    {% if object_list %}
+    <table class="table table-striped">
+        <tr>
+            <th>#</th>
+            <th>purpose</th>
+            <th>owner</th>
+            <th>created_at</th>
+        </tr>
+        {% for object in object_list %}
+        <tr>
+            <td>{{ object.id }}</td>
+            <td><a href="{{ object.get_absolute_url }}">{{ object.purpose }}</a></td>
+            <td><a href="#">{{ object.owner }}</a></td>
+            <td>{{ object.created_at }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <h4> No Data</h4>
+    {% endif %}
+
+{% endblock content %}

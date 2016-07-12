@@ -1,0 +1,12 @@
+{# index.html #}
+{% extends 'base.html' %}
+
+{% block body %}
+{{ block.super }}
+<div class="container">
+    <div class="jumbotron">
+      <h2>Request System</h2>
+      <p><a class="btn btn-primary btn-lg" href="{% url 'home' %}" role="button">Start >></a></p>
+    </div>
+</div>
+{% endblock body %}

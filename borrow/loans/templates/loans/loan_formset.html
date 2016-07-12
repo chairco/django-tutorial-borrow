@@ -1,0 +1,87 @@
+{# loans/loan_formset.html #}
+{% extends 'loans/_base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Loans Formset | {{ block.super }}{% endblock title %}
+
+{% block link %}{{ block.super }}
+    <style type="text/css">
+    .errorlist {
+        list-style: none;
+        color: #B94A48;
+        margin: 0px 0px 9px 0px;
+        padding: 0px;
+    }
+    </style>
+{% endblock link %}
+
+{% block js %}{{ block.super }}
+
+    <script type="text/html" id="loan-template">
+    <div id="loan-__prefix__">
+        {{ formset.empty_form|crispy }}
+    </div>
+    </script>
+    
+    <script>
+    $(function() {
+        $('.add-loan').click(function(ev){
+            ev.preventDefault();
+            var count = parseInt($('#id_menu_items-TOTAL_FORMS').attr('value'), 10);
+            var tmplMarkup = $('#loan-template').html();
+            var compiledTmpl = tmplMarkup.replace(/__prefix__/g, count)
+            console.log(compiledTmpl);
+            $('div.loans').append(compiledTmpl);
+            $('#id_menu_items-TOTAL_FORMS').attr('value', count + 1);
+        });
+    });
+    </script>
+
+{% endblock js %}
+
+{% block content %}
+
+    <ul class="breadcrumb">
+        {% block bar %}{{ block.super }}
+            {% if object.purpose %}
+                <li class="active">{{ object.purpose }}</li>
+            {% else %}
+                <li class="active">Loan edit</li>
+            {% endif %}
+        {% endblock bar %}
+    </ul>
+
+    <div class="page-header">
+        <h1>{% if form.instance.pk %}Edit{% else %}Add{% endif %} Loans and Device</h1>
+    </div>
+
+    <form action="." method="post">
+        {{ formset.management_form }}
+        {% csrf_token %}
+
+        <legend>Loan</legend>
+        <div class="Loan">
+        {{ form|crispy }}
+        {#{% crispy form %}#}
+        </div>
+
+        <legend>Device</legend>
+        <div class="pull-right"><a href="#" class="btn btn-primary add-loan"><i class="icon-plus icon-white"></i>Add Device</a>
+        </div>
+        <div class="loans form-inline">
+            {% for form in formset %}
+                {{ form|crispy }}
+                {#{% crispy form %}#}
+            {% endfor %}
+        </div>
+        <hr></hr>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+        <hr></hr>
+
+    </form>
+
+{% endblock content %}

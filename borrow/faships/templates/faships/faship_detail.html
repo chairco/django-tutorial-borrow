@@ -1,0 +1,42 @@
+{# faships/faship_detail.html #}
+{% extends 'faships/_base.html' %}
+
+{% block title %}Faships Detail | {{ block.super }}{% endblock title %}
+
+{% block content %}
+
+    <ul class="breadcrumb">
+        {% block bar %}{{ block.super }}
+            <li class="active">{{ object.purpose }}</li>
+        {% endblock bar %}
+    </ul>
+
+    <div class="page-header">
+        <a class="btn btn-primary pull-right" href="{% url 'faship_edit' pk=object.pk %}"><i class="icon-edit icon-white"></i>Edit</a>
+        <h1>{{ object.purpose }}</h1>
+    </div>
+
+    <table class="table table-striped">
+        <tr>
+            <th>ISN</th>
+            <th>Cinfig</th>
+            <th>Unit No.</th>
+            <th>FF/NED</th>
+            <th>Radar</th>
+            <th>UI/FDR</th>
+        </tr>
+        {% for item in object.menu_items.all %}
+        <tr>
+            <td>{{ item.isn }}</td>
+            <td>{{ item.config }}</td>
+            <td>{{ item.unit_no }}</td>
+            <td>{{ item.ffned }}</td>
+            <td>{{ item.radar }}</td>
+            <td>{{ item.uifdr }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p>By {{ object.owner }}</p>
+
+{% endblock content %}

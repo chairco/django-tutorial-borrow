@@ -1,0 +1,44 @@
+{# faships/faship_list.html #}
+{% extends 'faships/_base.html' %}
+
+{% block title %}Faships | {{ block.super }}{% endblock title %}
+
+{% block content %}
+    
+    <ul class="breadcrumb">
+        {% block bar %}{{ block.super }}
+        <li class="active">Faship list</li>
+        {% endblock bar %}
+    </ul>
+
+    <div class="page-header">
+        <a class="btn btn-primary pull-right" href="{% url 'faship_add' %}">Add Faship Request</a>
+        <h1>Faship List</h1>
+    </div>
+
+    {% if object_list %}
+    <table class="table table-striped">
+        <tr>
+            <th>#</th>
+            <th>Purpose</th>
+            <th>Pega</th>
+            <th>Coco</th>
+            <th>Owner</th>
+            <th>Created_at</th>
+        </tr>
+        {% for object in object_list %}
+        <tr>
+            <td>{{ object.id }}</td>
+            <td><a href="{{ object.get_absolute_url }}">{{ object.purpose }}</a></td>
+            <td>{{ object.pegadri }}</td>
+            <td>{{ object.cocodri }}</td>
+            <td><a href="#">{{ object.owner }}</a></td>
+            <td>{{ object.created_at }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <h4> No Data </h4>
+    {% endif %}
+
+{% endblock content %}

@@ -1,0 +1,2 @@
+heroku config:set DJANGO_SECRET_KEY='1@f_^%f&j0**#-e0ow)67rgs0albn8#$-%7((sz#lthjq904g5'
+heroku config:set DJANGO_SETTINGS_MODULE=borrow.settings.production_heroku
