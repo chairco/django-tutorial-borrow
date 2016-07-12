@@ -28,3 +28,13 @@ Now you're all set.
 ## Run the Development Server
 
     python manage.py runserver
+
+## example:
+[borrow system] is the example website. 
+
+practice account:
+
++ account: test_user
++ password: 0000
+
+[borrow system]: https://borrowsystem.herokuapp.com
